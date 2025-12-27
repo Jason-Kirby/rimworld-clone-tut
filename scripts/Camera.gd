@@ -11,6 +11,6 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			zoom += Vector2(zoomSpeed, zoomSpeed)
-		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			zoom -= Vector2(zoomSpeed, zoomSpeed)
-	
+	zoom = clamp(zoom, Vector2(zoomMin, zoomMin), Vector2(zoomMax, zoomMax))	
