@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://djf87gie77bif"]
+
+[ext_resource type="Script" uid="uid://dtr7nqj2fmljr" path="res://main.gd" id="1_epypp"]
+[ext_resource type="Script" uid="uid://b26a51wkxrkar" path="res://grid.gd" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://t2siply2yvsw" path="res://camera.gd" id="3_0hol4"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_epypp")
+
+[node name="Grid" type="Node2D" parent="."]
+script = ExtResource("1_wtcfe")
+show_debug = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_0hol4")
