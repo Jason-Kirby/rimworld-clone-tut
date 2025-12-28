@@ -3,3 +3,4 @@ extends Node2D
 
 func _ready():
 	grid.generateGrid()
+	$Grid/Path.initialize()
