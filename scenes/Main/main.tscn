@@ -1,15 +1,65 @@
-[gd_scene load_steps=6 format=3 uid="uid://djf87gie77bif"]
+[gd_scene load_steps=21 format=3 uid="uid://djf87gie77bif"]
 
 [ext_resource type="Script" uid="uid://dtr7nqj2fmljr" path="res://scenes/Main/main.gd" id="1_8gcrf"]
+[ext_resource type="Texture2D" uid="uid://svea4mg3okw8" path="res://art/colonist.png" id="2_3348s"]
 [ext_resource type="Script" uid="uid://b26a51wkxrkar" path="res://scripts/Grid.gd" id="2_rdp1x"]
+[ext_resource type="Texture2D" uid="uid://wtt7j8bw3qef" path="res://art/dirt.png" id="3_f0cp1"]
 [ext_resource type="Script" uid="uid://t2siply2yvsw" path="res://scripts/Camera.gd" id="4_5wuev"]
 [ext_resource type="Script" uid="uid://cwooirhd60rys" path="res://scripts/Pathfinding.gd" id="4_nyu32"]
+[ext_resource type="Texture2D" uid="uid://b573w246rm7sy" path="res://art/grass.png" id="4_qavmp"]
 [ext_resource type="PackedScene" uid="uid://cele014feu577" path="res://scenes/Unit/unit.tscn" id="4_rdp1x"]
+[ext_resource type="Texture2D" uid="uid://c68inyvyy2d1m" path="res://art/missing.png" id="5_yye4h"]
+[ext_resource type="Texture2D" uid="uid://d3pey1aactbn8" path="res://art/stonewall.png" id="6_v04fw"]
+[ext_resource type="Texture2D" uid="uid://yudlopf4gc37" path="res://art/tree.png" id="7_52res"]
+[ext_resource type="Texture2D" uid="uid://bprn1sjjm5dp0" path="res://art/woodwall.png" id="8_0sc1r"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f143f"]
+texture = ExtResource("2_3348s")
+texture_region_size = Vector2i(128, 128)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mysde"]
+texture = ExtResource("3_f0cp1")
+texture_region_size = Vector2i(128, 128)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r08jt"]
+texture = ExtResource("4_qavmp")
+texture_region_size = Vector2i(128, 128)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0h5q"]
+texture = ExtResource("5_yye4h")
+texture_region_size = Vector2i(128, 128)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ep58"]
+texture = ExtResource("6_v04fw")
+texture_region_size = Vector2i(128, 128)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jhp5o"]
+texture = ExtResource("7_52res")
+texture_region_size = Vector2i(128, 128)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixvot"]
+texture = ExtResource("8_0sc1r")
+texture_region_size = Vector2i(128, 128)
+
+[sub_resource type="TileSet" id="TileSet_rdp1x"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_f143f")
+sources/1 = SubResource("TileSetAtlasSource_mysde")
+sources/2 = SubResource("TileSetAtlasSource_r08jt")
+sources/4 = SubResource("TileSetAtlasSource_s0h5q")
+sources/5 = SubResource("TileSetAtlasSource_2ep58")
+sources/6 = SubResource("TileSetAtlasSource_jhp5o")
+sources/7 = SubResource("TileSetAtlasSource_ixvot")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gcrf")
 
-[node name="Grid" type="Node2D" parent="."]
+[node name="Grid" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_rdp1x")
+format = 2
+layer_0/name = "floor"
+layer_1/name = "building"
+layer_1/z_index = 1
 script = ExtResource("2_rdp1x")
 show_debug = true
 

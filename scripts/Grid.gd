@@ -1,6 +1,5 @@
 class_name Grid
-extends Node2D
-
+extends TileMap
 
 
 @export var width: int = 12
@@ -13,7 +12,14 @@ var grid: Dictionary = {}
 func generateGrid():
 	for x in width:
 		for y in height:
-			grid[Vector2(x,y)] = null
+			grid[Vector2(x,y)] = CellData.new(Vector2(x,y))
+			var floor = FloorData.new()
+			floor.texture = preload("res://art/grass.png")
+			floor.name = "Grass"
+			floor.id = 2
+			floor.coords = Vector2(0, 0)
+			grid[Vector2(x,y)].floorData = floor
+			refreshTile(Vector2(x,y))
 			if show_debug:
 				var rect = ReferenceRect.new()
 				rect.position = gridToWorld(Vector2(x,y))
@@ -29,3 +35,9 @@ func gridToWorld(_pos: Vector2) -> Vector2:
 	return _pos * cell_size
 func worldToGrid(_pos: Vector2) -> Vector2:
 	return floor(_pos / cell_size)
+
+func refreshTile(_pos: Vector2) -> void:
+	var data = grid[_pos]
+	set_cell(0, Vector2i(_pos), data.floorData.id, Vector2i(data.floorData.coords))
+	set_cell(1, Vector2i(_pos))
+	

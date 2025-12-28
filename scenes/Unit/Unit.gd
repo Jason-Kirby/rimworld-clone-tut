@@ -6,8 +6,7 @@ extends Node2D
 @onready var pf: Pathfinder = grid.get_node("Path")
 
 
-var data: UnitData
-var speed = 100
+var data: UnitData = UnitData.new()
 
 #var path: Array[Vector2]
 var path: Array=[]
@@ -17,7 +16,8 @@ var pos: Vector2:
 	set(value):
 		pos = value
 
-#func _ready():
+func _ready(): 
+	pos = grid.worldToGrid(position)
 #	path = [Vector2(1,0), Vector2(1,1), Vector2(1,2), Vector2(2,2)]
 
 func _process(delta):
@@ -30,7 +30,7 @@ func move(delta):
 			pos = path[0]
 			path.pop_front()
 		else:
-			position += (grid.gridToWorld(path[0]) - position).normalized() * speed * delta
+			position += (grid.gridToWorld(path[0]) - position).normalized() * data.speed * delta
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT:

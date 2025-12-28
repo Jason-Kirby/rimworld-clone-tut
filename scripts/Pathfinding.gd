@@ -30,6 +30,7 @@ func connectPoint(_point: Vector2):
 		var neighbor = _point + direction
 		var neighborID = getPointID(neighbor)
 		if grid.grid.has(neighbor) and grid.grid[neighbor] == null:
+#		if grid.grid.has(neighbor) and grid.grid[neighbor].navigable:
 			aStar.connect_points(_pointID, neighborID)
 
 func disconnectPoint(_point: Vector2):
